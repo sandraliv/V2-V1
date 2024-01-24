@@ -15,12 +15,16 @@
     "test:coverage": "cross-env NODE_OPTIONS='--experimental-vm-modules' NODE_NO_WARNINGS=1 jest ./*.test.js --coverage",
     "lint": "concurrently npm:lint:*",
     "lint:eslint": "eslint ./src/**/*.js",
-    "lint:stylelint": "stylelint ./public/styles.css"
+    "lint:stylelint": "stylelint ./public/styles.css",
+    "dev": "browser-sync start --serveStatic ./dist --server --files ./public/styles.css ./dist/*.*",
+    "build": "node ./src/generate.js && cpy public dist",
+    "prettier": "prettier --write ."
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "browser-sync": "^3.0.2",
     "concurrently": "^8.2.2",
+    "cpy-cli": "^4.2.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",

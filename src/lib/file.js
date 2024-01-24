@@ -24,7 +24,6 @@ export async function createDirIfNotExists(dir) {
     await mkdir(dir);
   }
 }
-
 /**
  * Read only files from a directory and returns as an array.
  * @param {string} dir Directory to read files from
@@ -41,19 +40,20 @@ export async function readFilesFromDir(dir) {
     return [];
   }
 
+  /**
+   * Förum yfir hverja einustu skrá í möpunni og búum til nákvæma slóð á harða diskinum
+   * Við athugum með því að kalla á stat fallið, hvað þetta er.
+   * Er að taka fylki af strengjum, mappa það. Fyrir hvert einasta stak í fylkinu
+   * þá skilast eitthvað nýtt. Skilar núll eða slóðin ef þetta er skrá.
+   */
   const mapped = files.map(async (file) => {
     const path = join(dir, file);
-    // console.log('mapping', file, path);
+    console.log('mapping', file, path);
     const info = await stat(path);
-    // console.log('info', info);
-
-    if (info.isDirectory()) {
-      // console.log('is dir!');
-      return null;
-    }
+    console.log('info', info);
 
     if (info.isFile()) {
-      // console.log('is file!');
+      console.log('is file!');
       return path;
     }
 
@@ -71,7 +71,7 @@ export async function readFilesFromDir(dir) {
       filtered.push(file);
     }
   }
-  // console.log('filtered', filtered);
+  console.log('filtered', filtered);
 
   return filtered;
 }
