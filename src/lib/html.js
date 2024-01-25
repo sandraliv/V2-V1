@@ -28,16 +28,21 @@ export function stadaTemplate(team, data) {
   return template(team, index);
 }
 export function leikirTemplate(team, data) {
-  const gamesHtml = data.toString();
   const index = `
   <h1>Collab deildin</h1>
   <section>
       <h2>Staða síðustu leikja</h2>
-      ${gamesHtml};
+      ${extractDates(data).map(date => `<div><section>${date}<section></div>`).join('')}
       </section>
       <p><a href="./index.html">Til baka</a></p>
       `;
   return template(team, index);
+}
+
+function extractDates(data) {
+  return data
+    .filter(item => item && item.date) // Filter out null values and items without dates
+    .map(item => new Date(item.date).toLocaleDateString()); // Extract and format dates
 }
 
 export function template(title, content) {
@@ -51,31 +56,4 @@ export function template(title, content) {
   </head>
   <body>${content}</body>
 </html>`;
-}
-
-export function gamesHtml(Date, games, courses) {
-  const department = `
-    <div class="Leikir">
-      <h2>${Date}</h2>
-      <p>${description}</p>
-      <h3>Áfangar</h3>
-      <div class="table">
-        <table>
-          <thead>
-            <tr>
-              <th>Númer</th>
-              <th>Heiti</th>
-              <th>Einingar</th>
-              <th>Misseri</th>
-              <th>Námsstig</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${courses.map(courseTemplate).join('')}
-          </tbody>
-        </table>
-      </div>
-      <p><a href="./index.html">Til baka</a></p>
-    </div>
-  `;
 }
