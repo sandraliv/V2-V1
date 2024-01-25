@@ -5,6 +5,7 @@ import { join } from 'path';
  * Check if a directory exists.
  * @param {string} dir Directory to check
  * @returns `true` if dir exists, `false` otherwise
+ * Halló
  */
 export async function direxists(dir) {
   if (!dir) {
