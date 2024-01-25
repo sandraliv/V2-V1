@@ -4,12 +4,12 @@ export function indexTemplate(title, buttons) {
       <h2>Nánari upplýsingar</h2>
       <ul>
       ${buttons
-        .filter((buttons) => buttons?.title?.length > 0)
-        .map(
-          (buttons) =>
-            `<li><a href="${buttons.html}">${buttons.title}</a></li>\n`,
-        )
-        .join('')}
+      .filter((buttons) => buttons?.title?.length > 0)
+      .map(
+        (buttons) =>
+          `<li><a href="${buttons.html}">${buttons.title}</a></li>\n`,
+      )
+      .join('')}
       </ul>
       `;
   return template(title, index);
@@ -51,4 +51,31 @@ export function template(title, content) {
   </head>
   <body>${content}</body>
 </html>`;
+}
+
+export function gamesHtml(Date, games, courses) {
+  const department = `
+    <div class="Leikir">
+      <h2>${Date}</h2>
+      <p>${description}</p>
+      <h3>Áfangar</h3>
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th>Númer</th>
+              <th>Heiti</th>
+              <th>Einingar</th>
+              <th>Misseri</th>
+              <th>Námsstig</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${courses.map(courseTemplate).join('')}
+          </tbody>
+        </table>
+      </div>
+      <p><a href="./index.html">Til baka</a></p>
+    </div>
+  `;
 }
