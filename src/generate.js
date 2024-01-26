@@ -20,7 +20,7 @@ async function main() {
   //og síðan í framhaldinu 'stada.html' og 'leikir.html'
   const data = [];
   for await (const file of files) {
-    if (file.indexOf('gameday') < 0 | file.length == 0) {
+    if ((file.indexOf('gameday') < 0) | (file.length == 0)) {
       continue;
     }
     const fileContents = await readFile(file);

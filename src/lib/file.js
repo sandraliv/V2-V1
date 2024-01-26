@@ -49,12 +49,9 @@ export async function readFilesFromDir(dir) {
    */
   const mapped = files.map(async (file) => {
     const path = join(dir, file);
-    console.log('mapping', file, path);
     const info = await stat(path);
-    console.log('info', info);
 
     if (info.isFile()) {
-      console.log('is file!');
       return path;
     }
 
@@ -72,7 +69,6 @@ export async function readFilesFromDir(dir) {
       filtered.push(file);
     }
   }
-  console.log('filtered', filtered);
 
   return filtered;
 }

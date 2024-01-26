@@ -3,7 +3,7 @@ export function parseTeamsJson(data) {
 }
 
 /**
- * 
+ *
  * @param {string} data Tekur 'gameday' gögnin og hendir ólöglegum færslum, skilar á normalizeruðu formi
  * @returns {string[]} Gögn á flottara formi.
  */
@@ -12,12 +12,11 @@ export function parseGameday(data) {
   try {
     parsed = JSON.parse(data);
   } catch (e) {
-    console.error('invalid data', e)
+    console.error('invalid data', e);
     return null;
   }
   if (!parsed) {
     console.warn('parsed data is not an object');
-    console.log(typeof parsed);
     return null;
   }
   if (!parsed.games) {
