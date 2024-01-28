@@ -19,7 +19,7 @@ export function parseGameday(data) {
     console.warn('parsed data is not an object');
     return null;
   }
-  if (!parsed.games) {
+  if (parsed.date == null || parsed.games == {} || !parsed.games) {
     console.warn('missing games array');
     return null;
   }

@@ -32,11 +32,11 @@ export function leikirTemplate(team, data) {
   <h1>Collab deildin</h1>
   <section>
       <h2>Staða síðustu leikja</h2>
-      ${extractDates(data)
-        .map((date) => `<div><section>${date}<section></div>`)
-        .join('')}
+      ${extractGames(data).join('')}
       </section>
-      <section>${extractGames(data)}</section>
+      
+      ${console.log(extractGames(data))}
+      <section></section>
     
       <p><a href="./index.html">Til baka</a></p>
       `;
@@ -45,20 +45,23 @@ export function leikirTemplate(team, data) {
 
 function extractGames(data) {
   return data
-    .filter((item) => item && item.games) // Filter out null values and items without dates
-    .map((item) => new GameDay(item.games)); // Extract and format dates
+    .filter((item) => item && item.games && item.date) // Filter out null values and items without dates
+    .map((item) => new GameDay(item.date, item.games)); // Extract and format dates
 }
 
-function GameDay(leikir) {
-  const heima = leikir;
-  let res = JSON.stringify(heima);
-  return res;
+function GameDay(date, games) {
+  return `
+  <h1>Dagsetning${date}</h1>
+  <div>${games.map((item) => new leikjaTemplate(item))}</div>
+      `;
 }
 
-function extractDates(data) {
-  return data
-    .filter((item) => item && item.date) // Filter out null values and items without dates
-    .map((item) => new Date(item.date).toLocaleDateString()); // Extract and format dates
+export function leikjaTemplate(item) {
+  console.log(item.home.name);
+  return `
+  <p>${item.home.name}</p>
+  <p>${item.away.name}</p>
+      `;
 }
 
 export function template(title, content) {

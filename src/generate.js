@@ -43,7 +43,14 @@ async function main() {
     { title: 'Staða', html: 'stada.html' },
     { title: 'Leikir', html: 'leikir.html' },
   ];
-  const calculatedStandings = calculateStandings(data);
+  const filtered = [];
+  for (const item of data) {
+    if (item) {
+      filtered.push(item);
+    }
+  }
+
+  const calculatedStandings = calculateStandings(filtered);
 
   const indexHtml = indexTemplate('Forsíða', Buttons);
   const indexFilename = join(OUTPUT_DIR, 'index.html');
@@ -53,7 +60,7 @@ async function main() {
   const stadaFilename = join(OUTPUT_DIR, 'stada.html');
   await writeFile(stadaFilename, stadaHtml);
 
-  const leikirHtml = leikirTemplate('Leikir', data);
+  const leikirHtml = leikirTemplate('Leikir', filtered);
   const leikirFilename = join(OUTPUT_DIR, 'leikir.html');
   await writeFile(leikirFilename, leikirHtml);
 }
