@@ -1,10 +1,10 @@
 import { describe, expect, it } from '@jest/globals';
-import { indexTemplate } from './html';
+import { template } from './html';
 
 describe('html', () => {
   describe.only('indexTemplate', () => {
     it('should return template with give title and body', () => {
-      const result = indexTemplate('title', []);
+      const result = template('title', 'body');
       expect(result).toContain('<title>title<title>');
     });
   });
