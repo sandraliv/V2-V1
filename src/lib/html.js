@@ -12,7 +12,8 @@ export function template(title, content) {
 }
 
 export function indexTemplate(title, buttons) {
-  const index = `
+  if (buttons) {
+    const index = `
       <h1>Collab-deildin</h1>
       <h2>Nánari upplýsingar</h2>
       <ul>
@@ -23,7 +24,9 @@ export function indexTemplate(title, buttons) {
         .join('')}
       </ul>
       `;
-  return template(title, index);
+    return template(title, index);
+  }
+  return template(title, {});
 }
 
 export function stadaTemplate(team, data) {
