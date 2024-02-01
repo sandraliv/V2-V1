@@ -2,12 +2,10 @@ export function parseTeamsJson(data) {
   return JSON.parse(data);
 }
 
-function isValidGame(game, b) {
-  // Check if game object is undefined or null
-  if (!game) {
+export function isValidGame(game, b) {
+  if (game.length === 0) {
     return false;
   }
-  // Check if the game object has the required properties and they have valid values
   if (
     b.includes(game.home.name) &&
     b.includes(game.away.name) &&
@@ -18,7 +16,6 @@ function isValidGame(game, b) {
     typeof game.home.score === 'number' &&
     typeof game.away.score === 'number'
   ) {
-    // You can add more specific checks here if needed
     return true;
   }
   return false;
