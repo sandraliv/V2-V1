@@ -17,7 +17,6 @@ export function indexTemplate(title, buttons) {
       <h2>Nánari upplýsingar</h2>
       <ul>
       ${buttons
-        .filter((button) => button.title.length > 0)
         .map(
           (button) => `<li><a href="${button.html}">${button.title}</a></li>\n`,
         )

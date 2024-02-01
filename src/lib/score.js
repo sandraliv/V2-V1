@@ -10,29 +10,31 @@ function reiknaStig(stig, lid) {
 
 export function calculateStandings(data, teams) {
   const calculatedScore = [];
-  for (const { games } of data) {
-    for (const { home, away } of games) {
-      if (home.score > away.score) {
-        calculatedScore.push({
-          team: home.name,
-          score: 3,
-        });
-      } else if (away.score > home.score) {
-        calculatedScore.push({ team: away.name, score: 1 });
-      } else {
-        calculatedScore.push(
-          {
+  if (data && teams) {
+    for (const { games } of data) {
+      for (const { home, away } of games) {
+        if (home.score > away.score) {
+          calculatedScore.push({
             team: home.name,
-            score: 1,
-          },
-          {
-            team: away.name,
-            score: 1,
-          },
-        );
+            score: 3,
+          });
+        } else if (away.score > home.score) {
+          calculatedScore.push({ team: away.name, score: 1 });
+        } else {
+          calculatedScore.push(
+            {
+              team: home.name,
+              score: 1,
+            },
+            {
+              team: away.name,
+              score: 1,
+            },
+          );
+        }
       }
     }
-  }
+  } else if (!data && !teams) return 0;
 
   const teamScore = [];
   for (const team in teams) {
