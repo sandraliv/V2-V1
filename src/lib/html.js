@@ -12,7 +12,7 @@ export function template(title, content) {
 }
 
 export function indexTemplate(title, buttons) {
-  if (buttons) {
+  if (buttons.length > 0) {
     const index = `
       <h1>Collab-deildin</h1>
       <h2>Nánari upplýsingar</h2>
