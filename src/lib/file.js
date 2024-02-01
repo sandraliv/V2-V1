@@ -69,7 +69,6 @@ export async function readFilesFromDir(dir) {
       filtered.push(file);
     }
   }
-
   return filtered;
 }
 

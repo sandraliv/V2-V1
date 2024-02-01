@@ -14,25 +14,21 @@ html {
 
 /* og látum erfast á allt */
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: inherit;
 }
-
-/* Breytur sem skal nota */
 
 :root {
   /* Grunn bilið okkar er 1rem == 16px */
   --columns: 12;
   --gutter: 30px;
   --offset: 20px;
-
   --spacing: 1rem;
+
   /* Hámarksbreidd á efni */
   --max-width: 1200px;
-
   --color-primary: #f0f0f8;
-
   --color-header: #fff;
   --color-text: #000;
   --color-border: #ccc;
@@ -40,24 +36,24 @@ html {
   /* Letur stillingar */
   --font-base-body-px: 16px;
   --font-base-size: 1rem;
-  --font-family-base: 'Nunito', Helvetica, Arial, sans-serif;
-  --font-family-heading: 'Domine', Georgia, serif;
+  --font-family-base: 'Nunito', helvetica, arial, sans-serif;
+  --font-family-heading: 'Domine', georgia, serif;
 }
 
 /* Leturgerðir */
 
 @font-face {
-  font-family: 'Domine';
+  font-family: Domine;
   font-style: normal;
   font-display: swap;
-  src: url(./fonts/domine.ttf) format('woff');
+  src: url('./fonts/domine.ttf') format('woff');
 }
 
 @font-face {
-  font-family: 'Nunito';
+  font-family: Nunito;
   font-style: normal;
   font-display: swap;
-  src: url(./fonts/nunito.ttf) format('woff');
+  src: url('./fonts/nunito.ttf') format('woff');
 }
 
 /* Almennt */
@@ -73,10 +69,10 @@ body {
 
 .container {
   display: flex;
+  flex-flow: wrap;
   flex-direction: row;
   max-width: 100rem;
   margin: 0 auto;
-  flex-wrap: wrap;
   justify-content: flex-start;
 }
 
@@ -87,6 +83,18 @@ body {
   width: 300px;
   height: 200px;
   margin: 20px;
+}
+
+.stada-lids {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  justify-content: space-between;
+}
+
+.lid-container {
+  display: flex;
+  flex-direction: column;
 }
 
 ul {

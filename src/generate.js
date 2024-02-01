@@ -53,8 +53,7 @@ async function main() {
     { title: 'Staða', html: 'stada.html' },
     { title: 'Leikir', html: 'leikir.html' },
   ];
-
-  const calculatedStandings = calculateStandings(data);
+  const calculatedStandings = calculateStandings(lastData, b);
 
   const indexHtml = indexTemplate('Forsíða', Buttons);
   const indexFilename = join(OUTPUT_DIR, 'index.html');

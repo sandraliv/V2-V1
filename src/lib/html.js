@@ -1,13 +1,25 @@
+export function template(title, content) {
+  return `<!doctype html>
+ <html lang="is">
+  <head>
+    <meta charset="utf-8">
+    <title>${title}</title>
+    <link rel="stylesheet" href="./public/styles.css">
+    <script type="module" src="./public/scripts.js"></script>
+  </head>
+  <body>${content}</body>
+ </html>`;
+}
+
 export function indexTemplate(title, buttons) {
   const index = `
       <h1>Collab-deildin</h1>
       <h2>Nánari upplýsingar</h2>
       <ul>
       ${buttons
-        .filter((buttons) => buttons?.title?.length > 0)
+        .filter((button) => button.title?.length > 0)
         .map(
-          (buttons) =>
-            `<li><a href="${buttons.html}">${buttons.title}</a></li>\n`,
+          (button) => `<li><a href="${button.html}">${button.title}</a></li>\n`,
         )
         .join('')}
       </ul>
@@ -16,16 +28,22 @@ export function indexTemplate(title, buttons) {
 }
 
 export function stadaTemplate(team, data) {
-  const standingsHtml = data.toString();
+  const standingsHtml = data
+    .map(
+      (teams, index) =>
+        ` <div class='stada-lids'<li>${index + 1}<section>${teams.team}</section><section>Stig: ${teams.score}<section></li></div>`,
+    )
+    .join('');
   const index = `
   <h1>Collab-deildin</h1>
-  <section>
+  <section class='lid-container'>
       <h2>Staðan í deildinni</h2>
       ${standingsHtml};
       </section>
       <p><a href="./index.html">Til baka</a></p>
       `;
-  return template(team, index);
+  const inde = index.replace(';', '');
+  return template(team, inde);
 }
 
 export function leikirTemplate(team, data) {
@@ -62,17 +80,4 @@ export function leikirTemplate(team, data) {
       </div>
       `;
   return template(team, index);
-}
-
-export function template(title, content) {
-  return `<!doctype html>
- <html lang="is">
-  <head>
-    <meta charset="utf-8">
-    <title>${title}</title>
-    <link rel="stylesheet" href="./public/styles.css">
-    <script type="module" src="./public/scripts.js"></script>
-  </head>
-  <body>${content}</body>
- </html>`;
 }
