@@ -26,7 +26,7 @@ export function indexTemplate(title, buttons) {
       `;
     return template(title, index);
   }
-  return template(title, {});
+  return template(title, []);
 }
 
 export function stadaTemplate(team, data) {
